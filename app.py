@@ -9,9 +9,9 @@ st.set_page_config(page_title="Employee Attrition – Dashboard & Predictor", la
 st.title("📊 Employee Attrition & Performance Predictor")
 
 # ---- Load artifacts ----
-data_path = Path("employee_attrition_cleaned.csv")
-attr_model_path = Path("rf_model.pkl")       # Attrition Model
-perf_model_path = Path("perf_model.pkl")     # Performance Model
+data_path = Path("data/cleaned_data.csv")
+attr_model_path = Path("model/model.pkl")       # Attrition Model
+perf_model_path = Path("model/perf_model.pkl")     # Performance Model
 
 @st.cache_data
 def load_data(path):
@@ -153,3 +153,4 @@ with tab3:
         Xp = pd.DataFrame([x_perf])[feature_cols]
         pred_perf = perf_model.predict(Xp)[0]
         st.info(f"⭐ Predicted Performance Rating: {int(pred_perf)} (scale 1–4)")
+        st.markdown("**Note:** Higher ratings indicate better performance.")
